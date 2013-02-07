@@ -1,0 +1,79 @@
+
+
+.ui-autocomplete {
+  max-height: 200px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  border: 1px solid #498fca;
+  margin-top: 2px;
+  font-size: 11px;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+  height: 200px;
+}
+.ui-menu .ui-menu-item a {
+  color: #bbb;
+  border-bottom: 1px solid #ccc;
+  padding: 2px 4px;
+  margin: -1px;
+}
+.ui-menu .ui-menu-item a span.school-name {
+  font-weight: bold;
+  color: #222;
+}
+
+.ui-menu .ui-menu-item a.ui-state-focus,
+.ui-menu .ui-menu-item a.ui-state-active {
+  font-weight: normal;
+  padding: 2px 4px;
+  margin: -1px;
+  color: #fff;
+}
+.ui-menu .ui-menu-item a.ui-state-focus span.school-name,
+.ui-menu .ui-menu-item a.ui-state-active span.school-name {
+  color: #fff;
+}
+.ui-menu .ui-state-disabled {
+  font-weight: normal;
+  line-height: 1.5;
+}
+.ui-menu .ui-state-disabled a {
+  cursor: default;
+}
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: none;
+  background: none;
+  background-color: #97D54C;
+  font-weight: normal;
+  margin: -1px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -khtml-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px/*{cornerRadius}*/;
+  -khtml-border-top-right-radius: 0px/*{cornerRadius}*/;
+  border-top-right-radius: 0px/*{cornerRadius}*/;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+  -moz-border-radius-bottomleft: 0px/*{cornerRadius}*/;
+  -webkit-border-bottom-left-radius: 0px/*{cornerRadius}*/;
+  -khtml-border-bottom-left-radius: 0px/*{cornerRadius}*/;
+  border-bottom-left-radius: 0px/*{cornerRadius}*/;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+  -moz-border-radius-bottomright: 0px/*{cornerRadius}*/;
+  -webkit-border-bottom-right-radius: 0px/*{cornerRadius}*/;
+  -khtml-border-bottom-right-radius: 0px/*{cornerRadius}*/;
+  border-bottom-right-radius: 0px/*{cornerRadius}*/;
+}

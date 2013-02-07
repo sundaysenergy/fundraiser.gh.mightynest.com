@@ -1,0 +1,165 @@
+@bgcolor: #e7f1f8;
+@nav-color: #1e75bb;
+@content-color: #5895d0;
+@white: #fff;
+
+.centered {
+  display: block;
+  margin: 0 auto;
+}
+.text-centerd {
+  text-align: center;
+}
+.float-left {
+  display: block;
+  float: left;
+}
+
+body {
+  background: @bgcolor url(../images/body_bg.jpg) repeat-x;
+}
+.container {
+  width: 994px;
+}
+#header {
+  .text-centerd;
+  a {
+    display: block;
+    margin-left: 355px;
+    margin-top: 20px;
+    width: 251px;
+    height: 98px;
+  }
+  h1 {
+    background: url(../images/header_text.jpg) no-repeat;
+    color: @white;
+    width: 666px;
+    height: 66px;
+    text-indent: -9999px;
+    .centered;
+  }
+}
+
+nav {
+  color: @nav-color;
+  ol {
+    .centered;
+    width: 747px;
+    margin-top: 20px;
+    li {
+      .float-left;
+      width: 249px;
+      font-size: 16px;
+      .text-centerd;
+    }
+  }
+}
+
+#content {
+  background: @content-color;
+  color: @white;
+  padding: 10px 30px;
+
+  h2 {
+    font-size: 32px;
+    font-weight: normal;
+  }
+}
+
+#faq {
+  .centered;
+  position: relative;
+  width: 725px;
+  h3 {
+    background: url(../images/faq.jpg) no-repeat;
+    text-indent: -999px;
+  }
+  ul {
+    .float-left;
+    list-style: none;
+    width: 400px;
+    margin: 0;
+    li {
+      color: #59b7de;
+      border-top: 1px dashed #59b7de;
+      padding: 6px 0;
+      font-size: 16px;
+      line-height: 22px;
+      a.selected {
+        font-weight: bold;
+      }
+    }
+  }
+  .popover {
+    width: 335px;
+    height: 330px;
+    top: 30px;
+    left: 400px;
+    display: block;
+    z-index: 0;
+    .float-left;
+    .arrow {
+      margin-top: -145px;
+    }
+    .popover-title {
+      display:none;
+    }
+    .popover-content {
+      padding: 15px;
+    }
+  }
+}
+
+#footer {
+  color: @white;
+  background: url(../images/footer_bg.jpg) no-repeat;
+  padding-top: 150px;
+  .float-left;
+  .contact, .connect, .share {
+    .float-left;
+  }
+  .contact {
+    width: 230px;
+    margin-left: 65px;
+    font-size: 13px;
+    .copy {
+      margin-bottom: 0;
+    }
+  }
+  .connect {
+    width: 222px;
+    margin-left: 75px;
+  }
+  .share {
+    width: 275px;
+    margin-left: 125px;
+    p {
+      margin: 10px 0;
+      font-size: 25px;
+      line-height: 30px;
+      a {
+        color: @white;
+      }
+    }
+  }
+  h3 {
+    color: @white;
+    border-bottom: 1px dashed @white;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+.modal {
+  width: 700px;
+}
+
+.modal-body {
+  background: url("../images/body_bg.jpg") repeat-x scroll 0 0 #E7F1F8;
+}
+
+#wufoo-r7x2z1 {
+  padding-left: 170px;
+  padding-right: 170px;
+  padding-top: 25px;
+}
