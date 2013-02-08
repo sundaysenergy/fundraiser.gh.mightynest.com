@@ -50,6 +50,7 @@
             <button type="submit" id="school-submit-2" class="btn btn-danger" disabled="disabled">discover how</button>
           </fieldset>
         </form>
+        <p class="add-school" style="display:none;">School not in the list?</p>
       </div>
       <div id="faq">
         <h3>FAQ's</h3>
@@ -256,9 +257,10 @@
       });
       // #42823885
       $('#school').on('autocompleteselect', function (event, ui) {
-        // Check vaild school
+        // Check valid school
         if (typeof ui.item.value != 'undefined') {
           $('#school-submit-2').removeAttr('disabled');
+          $('p.add-school').show();
         }
       });
       // popover
