@@ -70,7 +70,7 @@
             <a href="#" rel="popover" data-content="We are currently enrolling pre/K through elementary schools in the United States. Use the form above to find and select your school. Email us at schools@mightynest.com if your school does not appear on the list. ">What kinds of schools can participate? </a>
           </li>
           <li>
-            <a href="#" rel="popover" data-content="To find your school, enter the school's zip code and begin typing the first few letters of the school name in the school field. Only US schools with pre/K through elementary grades are currently being enrolled. If your school fits those criteria but is not on the list, please send us details to schools@mightynest.com. If your school is a middle or high school and you would like us to contact you should the program be expanded, send your information to schools@mightynest.com. ">Why isn't my school in the list?</a>
+            <a href="#" rel="popover" data-content="To find your school, enter the school's zip code and begin typing the first few letters of the school name in the school field. The list currently includes public and private elementary schools in the US. If your school does not appear in the list, please add your school here. We'll review and let you know when your school is set up.">Why isn't my school in the list?</a>
           </li>
           <li>
             <a href="#" rel="popover" data-content="MightyNest creates custom marketing materials for your school. Most of these materials are electronic, and can be sent to parents over email. We will send your school the exact email message, so all you have to do is hit &quot;send.&quot; We create an individual fundraising web page for your school and also communicate with parents through an opt-in newsletter containing helpful articles and tips for healthy livingt. ">How does the program get marketed to my school?</a>
@@ -304,6 +304,10 @@
           var replacePattern3 = /([\.\w]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
           var replacedText = replacedText.replace(replacePattern3, '<a class="' + this.options.linkClass + '" href="mailto:$1">$1</a>');
 
+          //Change "add your school here" to a link
+          var replacePattern4 = /(add your school here)/gim;
+          var replacedText = replacedText.replace(replacePattern4, '<a class="' + this.options.linkClass + '" href="fundraiser/add-school.html">$1</a>');          
+          
           return replacedText;
         }
     </script>
