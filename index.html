@@ -283,7 +283,7 @@
           var index = $("#faq a[rel=popover]").index($a);
           $popover.find('.arrow').css('margin-top', index*35 - 145 + 'px');
           // Google analytics trackevent
-          _gaq.push(['_trackEvent', 'MS_learn_more', 'FAQ click', 'zip entered']);
+          _gaq.push(['_trackEvent', 'MS_learn_more', 'FAQ click', $a.html()]);
           e.preventDefault();
         });
 
