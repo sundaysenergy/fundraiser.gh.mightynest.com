@@ -281,7 +281,7 @@
           var index = $("#faq a[rel=popover]").index($a);
           $popover.find('.arrow').css('margin-top', index*35 - 145 + 'px');
           // Google analytics trackevent
-          _gaq.push(['_trackEvent', 'MS_learn_more', 'FAQ click', $a.html()]);
+          _gaq.push(['_trackEvent', 'MS_learn_more', 'FAQ click', 'zip entered']);
           e.preventDefault();
         });
 
@@ -306,8 +306,8 @@
 
           //Change "add your school here" to a link
           var replacePattern4 = /(add your school here)/gim;
-          var replacedText = replacedText.replace(replacePattern4, '<a class="' + this.options.linkClass + '" href="add-school.html">$1</a>');          
-          
+          var replacedText = replacedText.replace(replacePattern4, '<a class="' + this.options.linkClass + '" href="add-school.html">$1</a>');
+
           return replacedText;
         }
     </script>
