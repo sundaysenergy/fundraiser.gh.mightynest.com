@@ -264,8 +264,10 @@
         if (typeof ui.item.value != 'undefined') {
           $('#school-submit-2').removeAttr('disabled');
           $('p.add-school').show();
-          _gaq.push(['_trackEvent', 'MS_cart_selector', 'form entry', 'zip entered']);
-          _gaq.push(['_trackEvent', 'MS_learn_more', 'form entry', 'zip entered']);
+          // Get zipcode entered
+          var zipcode_entered = $('#target').val();
+          _gaq.push(['_trackEvent', 'MS_cart_selector', 'form entry', zipcode_entered]);
+          _gaq.push(['_trackEvent', 'MS_learn_more', 'form entry', zipcode_entered]);
         }
       });
       // popover
