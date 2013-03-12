@@ -63,7 +63,7 @@
             { "mData": "auth_key" },
             { "mData": "ts" }
           ]
-        });
+        }).show();
       }
       else {
         $('#transcations').hide();
