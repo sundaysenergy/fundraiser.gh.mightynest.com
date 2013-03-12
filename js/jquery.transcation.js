@@ -49,7 +49,7 @@
 //         $.getJSON('http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id, function (data) {
 //           $('#transcations').val(JSON.stringify(data, null, '\t')).show();
 //         });
-        $('#transcations').dataTable({
+        $('#transcations-table').dataTable({
           "bProcessing": true,
           "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id,
           "sAjaxDataProp": '',
