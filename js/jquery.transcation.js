@@ -55,13 +55,13 @@
           "sAjaxDataProp": '',
           //"sAjaxDataProp": 'trans_index_list',
           "aoColumns": [
-            { "mData": "entity_source" },
-            { "mData": "entity_type" },
-            { "mData": "entity_id" },
-            { "mData": "value_source_id"},
-            { "mData": "value" },
-            { "mData": "value_tag" },
-            { "mData": "timestamp" }
+            { "mData": "es" },
+            { "mData": "et" },
+            { "mData": "ei" },
+            { "mData": "si"},
+            { "mData": "s" },
+            { "mData": "auth_key" },
+            { "mData": "ts" }
           ]
         });
       }
