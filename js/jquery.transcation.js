@@ -33,6 +33,9 @@
         });
         $('#final_url').val(final_url);
       }
+      else {
+        $('#final_url').val('Please fill all require field');
+      }
       return;
     }
     // Change behaviors
