@@ -15,7 +15,6 @@
         value = $('#value').val();
 
       var data = {
-        api_key: 'SSBMSUtFIFNFWCE',
         entity_source: 'mightynest',
         entity_tag: 'affiliate',
         entity_type: 'user',
@@ -28,12 +27,11 @@
         data.value = value;
         data.value_tag = value_tag;
 
-        var final_url = 'http://api.getsum.net?';
+        var final_url = 'http://api.getsum.net/create?api_key=SSBMSUtFIFNFWCE';
         $.each(data, function (i, item) {
           final_url += '&' + i + '=' + item;
         });
         $('#final_url').val(final_url);
-        console && console.log(final_url);
       }
       return;
     }
