@@ -43,6 +43,31 @@
     // Change behaviors
     $('#school_list').bind('change', function (e) {
       update_url();
+      // get recent transcations
+      var entity_id = $(this).val();
+      if (entity_id != '') {
+        $.getJSON('http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id, function (data) {
+          $('#transcations').val(JSON.stringify(data, null, '\t')).show();
+        });
+        // $('#transcations').dataTable({
+        //   "bProcessing": true,
+        //   "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id,
+        //   "sAjaxDataProp": '',
+        //   "sAjaxDataProp": 'trans_index_list',
+        //   "aoColumns": [
+        //     { "mData": "entity_source" },
+        //     { "mData": "entity_type" },
+        //     { "mData": "entity_id" },
+        //     { "mData": "value_source_id"},
+        //     { "mData": "value" },
+        //     { "mData": "value_tag" },
+        //     { "mData": "timestamp" }
+        //   ]
+        // });
+      }
+      else {
+        $('#transcations').hide();
+      }
     });
     $('#value_tag').bind('change', function (e) {
       update_url();
