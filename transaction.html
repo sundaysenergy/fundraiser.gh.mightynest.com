@@ -27,7 +27,7 @@
         <select id="value_tag" name="Value Tag" class="field select medium" tabindex="2" > 
           <option value="" selected="selected">
           </option>
-          <option value="newsletter" >
+          <option value="9ewsletter" >
           Newsletter
           </option>
           <option value="gizmo" >
@@ -40,10 +40,11 @@
         <input class="span3" id="value" type="text" placeholder="Value">
 
         <p>Final url:
-        <textarea class="span8" readonly="readonly" type="text" id="final_url" rows="5"></textarea></p>
+        <textarea class="span8" readonly="readonly" id="final_url" rows="5"></textarea></p>
+        <button class="btn btn-primary" id="create" disabled="disabled">Create</button>
       </form>
-      <div id="debug">
-      </div>
+      <textarea id="debug" readonly="readonly" rows="20" class="span9" style="display: none;">
+      </textarea>
     </div>
   </body>
 </html>

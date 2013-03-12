@@ -32,9 +32,11 @@
           final_url += '&' + i + '=' + item;
         });
         $('#final_url').val(final_url);
+        $('#create').removeAttr('disabled');
       }
       else {
         $('#final_url').val('Please fill all require field');
+        $('#create').attr('disabled', 'disabled');
       }
       return;
     }
@@ -51,6 +53,13 @@
     // final_url click, select all text inside
     $('#final_url').click(function () {
       $(this).select();
+    });
+    // Create button create
+    $('#create').click(function (e) {
+      e.preventDefault();
+      $.getJSON($('#final_url').val(), function (data) {
+        $('#debug').val(JSON.stringify(data, null, '\t')).show();
+      });
     });
   });
 })(jQuery);
