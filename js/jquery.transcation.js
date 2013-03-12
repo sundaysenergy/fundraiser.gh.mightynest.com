@@ -45,5 +45,9 @@
     $('#value').bind('keyup', function (e) {
       update_url();
     });
+    // final_url click, select all text inside
+    $('#final_url').click(function () {
+      $(this).select();
+    });
   });
 })(jQuery);
