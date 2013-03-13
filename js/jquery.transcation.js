@@ -57,6 +57,7 @@
           "bDestroy": true,
           "aaSorting": [[0, "desc"]],
           "iDisplayLength": 25,
+          "bAutoWidth": false,
           "aoColumns": [
             { "mData": "tid" },
             { "mData": "ei" },
@@ -69,18 +70,14 @@
         }).show();
         // Also get summary report
         $.getJSON('http://api.getsum.net/read/sums?es=mightynest&k=SSBMSUtFIFNFWCE&et=user&ei=' + entity_id, function (data) {
-          // gizmo
           var string = [];
-          if (typeof data.transaction_totals.test != 'undefined') {
-            string.push('"test: (' + data.transaction_totals.test + ') '+ data.sums.test +'"');
+          $('#summary').html('<ul></ul>').show();
+          for(var value_tag in data.transaction_totals) {
+            var list_item = value_tag + ': (' + data.transaction_totals[value_tag] + ') ' + data.sums[value_tag];
+            $('#summary ul').append($(document.createElement('li')).text(list_item));
+            string.push();
           }
-          if (typeof data.transaction_totals.newsletter != 'undefined') {
-            string.push('"newsletter: (' + data.transaction_totals.newsletter + ') '+ data.sums.newsletter +'"');
-          }
-          if (typeof data.transaction_totals.gizmo != 'undefined') {
-            string.push('"gizmo: (' + data.transaction_totals.gizmo + ') '+ data.sums.gizmo +'"');
-          }
-          $('#summary').html(string.join(' ,')).show();
+          //$('#summary').html(string.join(', ')).show();
         });
       }
       else {
