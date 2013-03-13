@@ -54,7 +54,8 @@
           "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id,
           "sAjaxDataProp": '',
           //"sAjaxDataProp": 'trans_index_list',
-          "aaSorting": [[0, "desc"]]
+          "bDestroy": true,
+          "aaSorting": [[0, "desc"]],
           "aoColumns": [
             { "mData": "tid" },
             { "mData": "ei" },
