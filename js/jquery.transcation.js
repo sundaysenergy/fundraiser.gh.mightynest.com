@@ -56,6 +56,7 @@
           //"sAjaxDataProp": 'trans_index_list',
           "bDestroy": true,
           "aaSorting": [[0, "desc"]],
+          "iDisplayLength": 25,
           "aoColumns": [
             { "mData": "tid" },
             { "mData": "ei" },
