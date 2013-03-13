@@ -55,12 +55,11 @@
           "sAjaxDataProp": '',
           //"sAjaxDataProp": 'trans_index_list',
           "aoColumns": [
-            { "mData": "es" },
-            { "mData": "et" },
             { "mData": "ei" },
-            { "mData": "si"},
             { "mData": "s" },
-            { "mData": "auth_key" },
+            { "mData": "st" },
+            { "mData": "si"},
+            { "mData": "value_string" },
             { "mData": "ts" }
           ]
         }).show();
