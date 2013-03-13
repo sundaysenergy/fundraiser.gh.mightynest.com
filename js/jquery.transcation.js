@@ -55,6 +55,7 @@
           "sAjaxDataProp": '',
           //"sAjaxDataProp": 'trans_index_list',
           "aoColumns": [
+            { "mData": "tid" },
             { "mData": "ei" },
             { "mData": "s" },
             { "mData": "st" },
