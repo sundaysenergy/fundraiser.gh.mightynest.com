@@ -25,33 +25,35 @@
   </head>
   <body>
     <div class="container">
+      <h2>Mightynest GetSum Transaction Generator</h2>
       <form>
-        <select id="school_list">
-          <option value="">Select a school</option>
-        </select>
-        <select id="value_tag" name="Value Tag" class="field select medium" tabindex="2" > 
-          <option value="" selected="selected">
-          </option>
-          <option value="9ewsletter" >
-          Newsletter
-          </option>
-          <option value="gizmo" >
-          Gizmo Survey
-          </option>
-          <option value="test">
-            Test
-          </option>
-        </select>
-        <input class="span3" id="value" type="text" placeholder="Value">
+        <fieldset>
+          <select id="school_list">
+            <option value="">Select a school</option>
+          </select>
+          <select id="value_tag" name="Value Tag" class="field select medium" tabindex="2" > 
+            <option value="" selected="selected">
+            </option>
+            <option value="9ewsletter" >
+            Newsletter
+            </option>
+            <option value="gizmo" >
+            Gizmo Survey
+            </option>
+            <option value="test">
+              Test
+            </option>
+          </select>
+          <input class="input-small" id="value" type="text" placeholder="Value">
+          <button class="btn btn-primary" id="create" disabled="disabled">Create</button>
+        </fieldset>
 
-        <p>Final url:
         <textarea class="span8" readonly="readonly" id="final_url" rows="5"></textarea></p>
-        <button class="btn btn-primary" id="create" disabled="disabled">Create</button>
+
       </form>
-      <textarea id="debug" readonly="readonly" rows="10" class="span9" style="display: none;">
-      </textarea>
-      <textarea id="transcations-txt" readonly="readonly" rows="10" class="span9" style="display: none;">
-      </textarea>
+
+      <textarea id="debug" readonly="readonly" rows="10" class="span9" style="display: none;"></textarea>
+      <textarea id="transcations-txt" readonly="readonly" rows="10" class="span9" style="display: none;"></textarea>
 
       <table cellpadding="0" cellspacing="0" border="0" class="display" id="transcations-table" style="display:none;">
         <thead>
@@ -68,6 +70,7 @@
         <tbody>
         </tbody>
       </table>
+
     </div>
   </body>
 </html>
