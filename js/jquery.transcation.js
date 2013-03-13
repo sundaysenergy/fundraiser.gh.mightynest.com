@@ -67,9 +67,24 @@
             { "mData": "ts" }
           ]
         }).show();
+        // Also get summary report
+        $.getJSON('http://api.getsum.net/read/sums?es=mightynest&k=SSBMSUtFIFNFWCE&et=user&ei=' + entity_id, function (data) {
+          // gizmo
+          var string = [];
+          if (typeof data.transaction_totals.test != 'undefined') {
+            string.push('"test: (' + data.transaction_totals.test + ') '+ data.sums.test +'"');
+          }
+          if (typeof data.transaction_totals.newsletter != 'undefined') {
+            string.push('"newsletter: (' + data.transaction_totals.newsletter + ') '+ data.sums.newsletter +'"');
+          }
+          if (typeof data.transaction_totals.gizmo != 'undefined') {
+            string.push('"gizmo: (' + data.transaction_totals.gizmo + ') '+ data.sums.gizmo +'"');
+          }
+          $('#summary').html(string.join(' ,')).show();
+        });
       }
       else {
-        $('#transcations').hide();
+        $('#transcations,#summary').hide();
       }
     });
     $('#value_tag').bind('change', function (e) {
@@ -87,6 +102,8 @@
       e.preventDefault();
       $.getJSON($('#final_url').val(), function (data) {
         $('#debug').val(JSON.stringify(data, null, '\t')).show();
+        // trigger school_list change
+        $('#school_list').trigger('change');
       });
     });
   });
