@@ -39,6 +39,11 @@
               $.each(data, function (index, item) {
                 if (typeof schools[item.entity_id] != 'undefined') {
                   item.school_name = schools[item.entity_id];
+                  if (typeof item.values.sums.challenge == 'undefined') {
+                    item.values.sums.challenge = 0
+                    item.values.transaction_totals.challenge = 0
+                  }
+                  item.values.sums.newsletter = item.values.sums.newsletter / 100
                   datasource.push(item);
                 }
               });
