@@ -30,7 +30,6 @@
               });
             }
           });
-          console.log(schools);
           $('#leaders-table').dataTable({
             'bProcessing': true,
             'sAjaxSource': 'http://api.getsum.net/read/leaders?api_key=SSBMSUtFIFNFWCE&entity_source=mightynest&entity_type=user',
@@ -41,12 +40,12 @@
             'aoColumns': [
               {'mData': 'entity_id'},
               {'mData': function (source, type, val) {
-                if (typeof schools[source.entity_id] != undefined) {
+                if (source.entity_id.length == 5 && typeof schools[source.entity_id] != 'undefined') {
                   if (type == 'set') {
                     source.school_name = schools[source.entity_id];
                     return;
                   }
-                  return source.school_name;
+                  return typeof source.school_name != 'undefined' ? source.school_name : '';
                 }
                 return '';
               }},
