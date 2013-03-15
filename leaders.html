@@ -38,6 +38,7 @@
             success: function (data) {
               $.each(data, function (index, item) {
                 if (typeof schools[item.entity_id] != 'undefined') {
+                  item.school_name = schools[item.entity_id];
                   datasource.push(item);
                 }
               });
@@ -51,16 +52,7 @@
             'bAutoWidth': false,
             'aoColumns': [
               {'mData': 'entity_id'},
-              {'mData': function (source, type, val) {
-                if (source.entity_id.length == 5 && typeof schools[source.entity_id] != 'undefined') {
-                  if (type == 'set') {
-                    source.school_name = schools[source.entity_id];
-                    return;
-                  }
-                  return typeof source.school_name != 'undefined' ? source.school_name : '';
-                }
-                return '';
-              }},
+              {'mData': 'school_name'},
               {'mData': 'values.sums.newsletter'},
               {'mData': 'values.sums.newsletter'},
               {'mData': 'values.transaction_totals.newsletter'},
