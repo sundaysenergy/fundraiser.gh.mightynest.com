@@ -44,10 +44,12 @@
               });
             }
           });
+          $.fn.dataTableExt.sErrMode = 'throw';
           $('#leaders-table').dataTable({
             'bProcessing': true,
             'aaData': datasource,
             "bDestroy": true,
+            "aaSorting": [[3, "desc"]],
             'iDisplayLength': 25,
             'bAutoWidth': false,
             'aoColumns': [
