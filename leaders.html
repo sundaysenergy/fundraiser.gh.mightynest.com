@@ -30,10 +30,22 @@
               });
             }
           });
+          var datasource = [];
+          $.ajax({
+            dataType: 'json',
+            url: 'http://api.getsum.net/read/leaders?api_key=SSBMSUtFIFNFWCE&entity_source=mightynest&entity_type=user',
+            async: false,
+            success: function (data) {
+              $.each(data, function (index, item) {
+                if (typeof schools[item.entity_id] != 'undefined') {
+                  datasource.push(item);
+                }
+              });
+            }
+          });
           $('#leaders-table').dataTable({
             'bProcessing': true,
-            'sAjaxSource': 'http://api.getsum.net/read/leaders?api_key=SSBMSUtFIFNFWCE&entity_source=mightynest&entity_type=user',
-            "sAjaxDataProp": '',
+            'aaData': datasource,
             "bDestroy": true,
             'iDisplayLength': 25,
             'bAutoWidth': false,
