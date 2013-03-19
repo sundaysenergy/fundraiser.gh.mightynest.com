@@ -7,6 +7,7 @@
         var $option = $('<option />').attr('value', index).html(item);
         $school_list.append($option);
       });
+      $school_list.chosen();
     });
     // Function update url
     function update_url() {
