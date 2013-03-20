@@ -57,6 +57,13 @@
                       if (typeof item.values.sums.newsletter != 'undefined') {
                         item.values.sums.newsletter = item.values.sums.newsletter / 100;
                       }
+
+                      if (typeof values.transaction_totals.newsletter == 'undefined') {
+                        values.transaction_totals.newsletter = 0;
+                      }
+                      if (typeof values.transaction_totals.challenge == 'undefined') {
+                        values.transaction_totals.challenge = 0;
+                      }
                       datasource.push(item);
                     }
                   });
