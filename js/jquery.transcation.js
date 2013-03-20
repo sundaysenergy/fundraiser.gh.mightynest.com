@@ -40,7 +40,7 @@
             data.value = value;
             data.value_tag = value_tag;
 
-            var final_url = 'http://api.getsum.net/create?api_key=SSBMSUtFIFNFWCE';
+            var final_url = 'http://api.getsum.net/create?api_key=' + api_key;
             $.each(data, function (i, item) {
               final_url += '&' + i + '=' + item;
             });
@@ -64,7 +64,7 @@
     //         });
             $('#transcations-table').dataTable({
               "bProcessing": true,
-              "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id,
+              "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=' + api_key + '&ti=1-100&entity_type=user&entity_id=' + entity_id,
               "sAjaxDataProp": '',
               //"sAjaxDataProp": 'trans_index_list',
               "bDestroy": true,
@@ -82,7 +82,7 @@
               ]
             }).show();
             // Also get summary report
-            $.getJSON('http://api.getsum.net/read/sums?es=mightynest&k=SSBMSUtFIFNFWCE&et=user&ei=' + entity_id, function (data) {
+            $.getJSON('http://api.getsum.net/read/sums?es=mightynest&k=' + api_key + '&et=user&ei=' + entity_id, function (data) {
               var string = [];
               $('#summary').html('<ul></ul>').show();
               for(var value_tag in data.transaction_totals) {
@@ -116,7 +116,7 @@
             $('#school_list').trigger('change');
           });
         });
-        
+
       },
       dataType: 'json'
     });
