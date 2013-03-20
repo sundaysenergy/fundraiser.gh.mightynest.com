@@ -19,6 +19,18 @@
       (function ($) {
         $(function() {
           // Get school list
+          var api_key = '';
+          $.ajax({
+            dataType: 'json',
+            url: 'http://test34.mightynest.com/getsum/api',
+            async: false,
+            success: function (data) {
+              api_key = data.api_key;
+            }
+          });
+          if (api_key.length == 0) {
+            return;
+          }
           var schools = {};
           $.ajax({
             dataType: 'json',
@@ -33,7 +45,7 @@
           var datasource = [];
           $.ajax({
             dataType: 'json',
-            url: 'http://api.getsum.net/read/leaders?api_key=SSBMSUtFIFNFWCE&entity_source=mightynest&entity_type=user',
+            url: 'http://api.getsum.net/read/leaders?api_key=' + api_key + '&entity_source=mightynest&entity_type=user',
             async: false,
             success: function (data) {
               $.each(data, function (index, item) {
