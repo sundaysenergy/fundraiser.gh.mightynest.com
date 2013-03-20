@@ -57,6 +57,9 @@
                       if (typeof item.values.sums.newsletter != 'undefined') {
                         item.values.sums.newsletter = item.values.sums.newsletter / 100;
                       }
+                      else {
+                        item.values.sums.newsletter = 0;
+                      }
 
                       if (typeof item.values.transaction_totals.newsletter == 'undefined') {
                         item.values.transaction_totals.newsletter = 0;
