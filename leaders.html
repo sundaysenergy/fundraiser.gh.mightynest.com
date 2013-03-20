@@ -21,16 +21,16 @@
           // Get school list
           var api_key = '';
           $.ajax({
-            type: 'post',
             dataType: 'json',
-            url: 'http://test34.mightynest.com/getsum/api',
+            url: 'http://mightynest.com/getsum/api',
             async: false,
-            xhrFields: {
-              withCredentials: true
+            beforeSend: function(xhr) {
+              xhr.withCredentials = true;
             },
             success: function (data) {
               api_key = data.api_key;
-            }
+            },
+            crossDomain: true
           });
           if (api_key.length == 0) {
             return;
