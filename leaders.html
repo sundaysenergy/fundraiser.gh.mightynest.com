@@ -21,12 +21,11 @@
           // Get school list
           var api_key = '';
           $.ajax({
-            dataType: 'json',
             url: 'http://mightynest.com/getsum/api',
-            async: false,
-            beforeSend: function(xhr) {
-              xhr.withCredentials = true;
+            xhrFields: {
+              withCredentials: true
             },
+            async: false,
             success: function (data) {
               api_key = data.api_key;
             }
