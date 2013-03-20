@@ -25,10 +25,10 @@
             xhrFields: {
               withCredentials: true
             },
-            async: false,
             success: function (data) {
               api_key = data.api_key;
-            }
+            },
+            dataType: 'json'
           });
           if (api_key.length == 0) {
             return;
