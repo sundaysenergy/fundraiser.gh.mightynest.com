@@ -27,59 +27,59 @@
             },
             success: function (data) {
               api_key = data.api_key;
+              if (api_key.length == 0) {
+                return;
+              }
+              var schools = {};
+              $.ajax({
+                dataType: 'json',
+                url: 'http://mightynest.getsum.net/proxy/affiliate/list/json',
+                async: false,
+                success: function (data) {
+                  $.each(data, function (index, item) {
+                    schools[index] = item;
+                  });
+                }
+              });
+              var datasource = [];
+              $.ajax({
+                dataType: 'json',
+                url: 'http://api.getsum.net/read/leaders?api_key=' + api_key + '&entity_source=mightynest&entity_type=user',
+                async: false,
+                success: function (data) {
+                  $.each(data, function (index, item) {
+                    if (typeof schools[item.entity_id] != 'undefined') {
+                      item.school_name = schools[item.entity_id];
+                      if (typeof item.values.sums.challenge == 'undefined') {
+                        item.values.sums.challenge = 0
+                        item.values.transaction_totals.challenge = 0
+                      }
+                      item.values.sums.newsletter = item.values.sums.newsletter / 100
+                      datasource.push(item);
+                    }
+                  });
+                }
+              });
+              //$.fn.dataTableExt.sErrMode = 'throw';
+              $('#leaders-table').dataTable({
+                'bProcessing': true,
+                'aaData': datasource,
+                "bDestroy": true,
+                "aaSorting": [[3, "desc"]],
+                'iDisplayLength': 25,
+                'bAutoWidth': false,
+                'aoColumns': [
+                  {'mData': 'entity_id'},
+                  {'mData': 'school_name'},
+                  {'mData': 'values.transaction_totals.newsletter'},
+                  {'mData': 'values.sums.newsletter'},
+                  {'mData': 'values.transaction_totals.challenge'},
+                  {'mData': 'values.sums.challenge'}
+                ]
+              }).show();
             },
             dataType: 'json'
           });
-          if (api_key.length == 0) {
-            return;
-          }
-          var schools = {};
-          $.ajax({
-            dataType: 'json',
-            url: 'http://mightynest.getsum.net/proxy/affiliate/list/json',
-            async: false,
-            success: function (data) {
-              $.each(data, function (index, item) {
-                schools[index] = item;
-              });
-            }
-          });
-          var datasource = [];
-          $.ajax({
-            dataType: 'json',
-            url: 'http://api.getsum.net/read/leaders?api_key=' + api_key + '&entity_source=mightynest&entity_type=user',
-            async: false,
-            success: function (data) {
-              $.each(data, function (index, item) {
-                if (typeof schools[item.entity_id] != 'undefined') {
-                  item.school_name = schools[item.entity_id];
-                  if (typeof item.values.sums.challenge == 'undefined') {
-                    item.values.sums.challenge = 0
-                    item.values.transaction_totals.challenge = 0
-                  }
-                  item.values.sums.newsletter = item.values.sums.newsletter / 100
-                  datasource.push(item);
-                }
-              });
-            }
-          });
-          //$.fn.dataTableExt.sErrMode = 'throw';
-          $('#leaders-table').dataTable({
-            'bProcessing': true,
-            'aaData': datasource,
-            "bDestroy": true,
-            "aaSorting": [[3, "desc"]],
-            'iDisplayLength': 25,
-            'bAutoWidth': false,
-            'aoColumns': [
-              {'mData': 'entity_id'},
-              {'mData': 'school_name'},
-              {'mData': 'values.transaction_totals.newsletter'},
-              {'mData': 'values.sums.newsletter'},
-              {'mData': 'values.transaction_totals.challenge'},
-              {'mData': 'values.sums.challenge'}
-            ]
-          }).show();
         });
       })(jQuery);
     </script>
