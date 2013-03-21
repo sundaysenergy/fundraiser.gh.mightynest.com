@@ -1,31 +1,21 @@
 (function ($) {
   $(function() {
-    var api_key = '';
-    $.ajax({
-      url: 'http://mightynest.com/getsum/api',
-      xhrFields: {
-        withCredentials: true
-      },
-      success: function (data) {
-        api_key = data.api_key;
-        if (api_key.length == 0) {
-          return;
-        }
+    var api_key = 'SSBMSUtFIFNFWCE';
+    // $.ajax({
+    //   url: 'http://mightynest.com/getsum/api',
+    //   xhrFields: {
+    //     withCredentials: true
+    //   },
+    //   success: function (data) {
+    //     api_key = data.api_key;
+    //     if (api_key.length == 0) {
+    //       return;
+    //     }
 
-        var $school_list = $('#school_list');
-        // Get list school
-        $.getJSON('http://mightynest.getsum.net/proxy/affiliate/list/json', function (data) {
-          $.each(data, function (index, item) {
-            var $option = $('<option />').attr('value', index).html(item);
-            $school_list.append($option);
-          });
-          $school_list.chosen();
-        });
+
         // Function update url
         function update_url() {
-          var school_list = $('#school_list').val(),
-            value_tag = $('#value_tag').val(),
-            value = $('#value').val();
+          var value = $('#value').val();
 
           var data = {
             entity_source: 'mightynest',
@@ -35,10 +25,8 @@
             source_type: 'user',
             source_id: 'user id'
           }
-          if (school_list != '' && value_tag != '' && value != '') {
-            data.entity_id = school_list;
+          if (value != '') {
             data.value = value;
-            data.value_tag = value_tag;
 
             var final_url = 'http://api.getsum.net/create?api_key=' + api_key;
             $.each(data, function (i, item) {
@@ -78,13 +66,7 @@
                 { "mData": "st" },
                 { "mData": "si"},
                 { "mData": "value_string" },
-                {
-                  "mData": "ts",
-                  "mRender": function (data, type, full) {
-                    console.log(data);
-                    return data;
-                  }
-                }
+                { "mData": "ts" }
               ]
             }).show();
             // Also get summary report
@@ -103,9 +85,6 @@
             $('#transcations,#summary').hide();
           }
         });
-        $('#value_tag').bind('change', function (e) {
-          update_url();
-        });
         $('#value').bind('keyup', function (e) {
           update_url();
         });
@@ -123,8 +102,8 @@
           });
         });
 
-      },
-      dataType: 'json'
-    });
+    //   },
+    //   dataType: 'json'
+    // });
   });
 })(jQuery);
