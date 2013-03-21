@@ -81,7 +81,10 @@
                 {
                   "mData": "ts",
                   "mRender": function (data, type, full) {
-                    console.log(data);
+                    if (type == 'display') {
+                      var _date = new Date(data * 1000);
+                      return $.datepicker.formatDate('mm/dd/yy', _date);
+                    }
                     return data;
                   }
                 }
