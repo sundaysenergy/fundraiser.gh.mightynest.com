@@ -1,37 +1,25 @@
 (function ($) {
   $(function() {
-    var api_key = 'SSBMSUtFIFNFWCE';
-    // $.ajax({
-    //   url: 'http://mightynest.com/getsum/api',
-    //   xhrFields: {
-    //     withCredentials: true
-    //   },
-    //   success: function (data) {
-    //     api_key = data.api_key;
-    //     if (api_key.length == 0) {
-    //       return;
-    //     }
+    var api_key = '';
+    $.ajax({
+       url: 'http://mightynest.com/getsum/api',
+       xhrFields: {
+         withCredentials: true
+       },
+       success: function (data) {
+         api_key = data.api_key;
+         if (api_key.length == 0) {
+           return;
+         }
 
 
         // Function update url
         function update_url() {
           var value = $('#value').val();
 
-          var data = {
-            entity_source: 'mightynest',
-            entity_tag: 'affiliate',
-            entity_type: 'user',
-            source: 'mightynest',
-            source_type: 'user',
-            source_id: 'user id'
-          }
           if (value != '') {
-            data.value = value;
 
-            var final_url = 'http://api.getsum.net/create?api_key=' + api_key;
-            $.each(data, function (i, item) {
-              final_url += '&' + i + '=' + item;
-            });
+            var final_url = 'http://api.getsum.net/transactions/source_id.json?es=mightynest&k=' + api_key + '&ti=1-100&et=user&si=' + value + '&st=email&s=' + $('#source').val();
             $('#final_url').val(final_url);
             $('#create').removeAttr('disabled');
           }
@@ -41,51 +29,44 @@
           }
           return;
         }
-        // Change behaviors
-        $('#school_list').bind('change', function (e) {
-          update_url();
-          // get recent transcations
-          var entity_id = $(this).val();
-          if (entity_id != '') {
-    //         $.getJSON('http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id, function (data) {
-    //           $('#transcations').val(JSON.stringify(data, null, '\t')).show();
-    //         });
-            $('#transcations-table').dataTable({
-              "bProcessing": true,
-              "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=' + api_key + '&ti=1-100&entity_type=user&entity_id=' + entity_id,
-              "sAjaxDataProp": '',
-              //"sAjaxDataProp": 'trans_index_list',
-              "bDestroy": true,
-              "aaSorting": [[0, "desc"]],
-              "iDisplayLength": 25,
-              "bAutoWidth": false,
-              "aoColumns": [
-                { "mData": "tid" },
-                { "mData": "ei" },
-                { "mData": "s" },
-                { "mData": "st" },
-                { "mData": "si"},
-                { "mData": "value_string" },
-                { "mData": "ts" }
-              ]
-            }).show();
-            // Also get summary report
-            $.getJSON('http://api.getsum.net/read/sums?es=mightynest&k=' + api_key + '&et=user&ei=' + entity_id, function (data) {
-              var string = [];
-              $('#summary').html('<ul></ul>').show();
-              for(var value_tag in data.transaction_totals) {
-                var list_item = value_tag + ': (' + data.transaction_totals[value_tag] + ') ' + data.sums[value_tag];
-                $('#summary ul').append($(document.createElement('li')).text(list_item));
-                string.push();
-              }
-              //$('#summary').html(string.join(', ')).show();
-            });
-          }
-          else {
-            $('#transcations,#summary').hide();
-          }
+
+
+        function get_result() {
+            // get recent transcations
+            var entity_id = $('#value').val();
+            if (entity_id != '') {
+                //         $.getJSON('http://api.getsum.net/read/transactions?entity_source=mightynest&key=SSBMSUtFIFNFWCE&ti=1-100&entity_type=user&entity_id=' + entity_id, function (data) {
+                //           $('#transcations').val(JSON.stringify(data, null, '\t')).show();
+                //         });
+                $('#transcations-table').dataTable({
+                    "bProcessing": true,
+                    "sAjaxSource": 'http://api.getsum.net/transactions/source_id.json?es=mightynest&k=' + api_key + '&ti=1-100&et=user&si=' + entity_id + '&st=email&s=' + $('#source').val(),
+                    "sAjaxDataProp": '',
+                    //"sAjaxDataProp": 'trans_index_list',
+                    "bDestroy": true,
+                    "aaSorting": [[0, "desc"]],
+                    "iDisplayLength": 25,
+                    "bAutoWidth": false,
+                    "aoColumns": [
+                        { "mData": "tid" },
+                        { "mData": "ei" },
+                        { "mData": "s" },
+                        { "mData": "st" },
+                        { "mData": "si"},
+                        { "mData": "value_string" },
+                        { "mData": "ts" }
+                    ]
+                }).show();
+            }
+            else {
+                $('#transcations-table').hide();
+            }
+        }
+        $('#source').bind('change', function () {
+            update_url();
         });
-        $('#value').bind('keyup', function (e) {
+        // Change behaviors
+        $('#value').bind('keyup', function () {
           update_url();
         });
         // final_url click, select all text inside
@@ -95,15 +76,14 @@
         // Create button create
         $('#create').click(function (e) {
           e.preventDefault();
-          $.getJSON($('#final_url').val(), function (data) {
-            $('#debug').val(JSON.stringify(data, null, '\t')).show();
-            // trigger school_list change
-            $('#school_list').trigger('change');
-          });
+          get_result();
+//          $.getJSON($('#final_url').val(), function (data) {
+//            $('#debug').val(JSON.stringify(data, null, '\t')).show();
+//          });
         });
 
-    //   },
-    //   dataType: 'json'
-    // });
+       },
+       dataType: 'json'
+    });
   });
 })(jQuery);

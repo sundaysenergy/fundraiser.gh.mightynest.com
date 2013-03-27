@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mighty Schools Fundraising Users</title>
+    <link rel="stylesheet/less" href="components/bootstrap/less/bootstrap.less" media="all" />
+    <link rel="stylesheet/less" href="css/style.less" media="all" />
+    <link rel="stylesheet" href="css/chosen.css" />
+    <script src="components/lessjs/less-1.3.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript">
+      <!--//--><![CDATA[//><!--
+      var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-7833382-2"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+      //--><!]]>
+    </script>
+    <script src="http://www.datatables.net/release-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="js/chosen.jquery.min.js"></script>
+    <script src="js/jquery.users.js"></script>
+    <style type="text/css" title="currentStyle">
+      @import "css/demo_page.css";
+      @import "css/demo_table.css";
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Mightynest GetSum Users</h2>
+      <form>
+        <input class="input-block-level" readonly="readonly" id="final_url">
+
+        <fieldset>
+          <input class="span3" id="value" type="text" placeholder="Value">
+           <select id="source">
+               <option value="mailchimp">Mailchimp</option>
+               <option value="gizmo">Gizmo</option>
+           </select>
+          <button class="btn btn-primary" id="create" disabled="disabled">Create</button>
+        </fieldset>
+      </form>
+
+      <div id="summary"></div>
+      <table cellpadding="0" cellspacing="0" border="0" class="display" id="transcations-table" style="display:none;">
+        <thead>
+          <tr>
+            <th>Trans ID</th>
+            <th>Entity ID</th>
+            <th>Source</th>
+            <th>Source Type</th>
+            <th>Source ID</th>
+            <th>Value</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <textarea id="debug" readonly="readonly" rows="10" class="span9" style="display: none;"></textarea>
+      <textarea id="transcations-txt" readonly="readonly" rows="10" class="span9" style="display: none;"></textarea>
+
+    </div>
+  </body>
+</html>
