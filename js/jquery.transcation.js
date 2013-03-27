@@ -64,7 +64,7 @@
     //         });
             $('#transcations-table').dataTable({
               "bProcessing": true,
-              "sAjaxSource": 'http://api.getsum.net/read/transactions?entity_source=mightynest&key=' + api_key + '&ti=1-100&entity_type=user&entity_id=' + entity_id,
+              "sAjaxSource": 'http://api.getsum.net/transactions/entity_id.json?entity_source=mightynest&key=' + api_key + '&ti=1-100&entity_type=user&entity_id=' + entity_id,
               "sAjaxDataProp": '',
               //"sAjaxDataProp": 'trans_index_list',
               "bDestroy": true,
