@@ -13,8 +13,8 @@ angular.module('mightynestApp', [])
       })
       /* Default route */
       .when('/', {
-        templateUrl: 'views/form.html',
-        controller: 'MainCtrl'
+        template: 'Redirecting...',
+        controller: 'RedirectToIndexCtrl'
       })
       .otherwise({
         redirectTo: '/'
