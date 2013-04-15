@@ -8,8 +8,8 @@ angular.module('mightynestApp', [])
     $routeProvider
       /* Route for getting school_id into parameter */
       .when('/school/:schoolId', {
-        templateUrl: 'views/school.html',
-        controller: 'SchoolCtrl'
+        template: 'SchoolInfo',
+        controller: 'SchoolInfoCtrl'
       })
       /* Default route */
       .when('/', {
