@@ -7,7 +7,7 @@ angular.module('mightynestApp')
 
   .controller('RedirectToIndexCtrl', function () {
     window.hash = '';
-    window.location = '/index.html';
+    window.location = '/fundraiser/index.html';
   })
 
   .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams, $q) {
@@ -35,7 +35,8 @@ angular.module('mightynestApp')
         prepopulated = {
           'Field23': $scope.schoolId,
           'Field42': $scope.userName,
-          'Field48': $scope.userId
+          'Field48': $scope.userId,
+          'Field21': $scope.schoolUrl,
         },
         result = [];
 
@@ -55,9 +56,9 @@ angular.module('mightynestApp')
     var domain = 'http://mightynest.com/';
 
     // first
-    $http.get(domain + 'affiliate/info/' + $scope.schoolId + '/json')
+    $http.get(domain + 'affiliate/info/' + $scope.schoolId + '/json/FULL_LOAD')
       .success(function (response) {
-
+        $scope.schoolUrl = response.url;
         $q.all([
             $http.get(domain + response.json_file),
             $http.get(domain + 'mightynest/user/json')
