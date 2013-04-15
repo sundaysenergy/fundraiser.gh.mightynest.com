@@ -10,8 +10,8 @@ angular.module('mightynestApp')
 
   // 42 http://mightynest.com/mightynest/user/json
 
-  .controller('RedirectToIndexCtrl', function ($location) {
-    $location.url('/index.html');
+  .controller('RedirectToIndexCtrl', function () {
+    window.location = '/index.html';
   })
 
   .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams) {
