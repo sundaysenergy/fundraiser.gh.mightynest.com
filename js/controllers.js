@@ -15,14 +15,15 @@ angular.module('mightynestApp')
   })
 
   .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams) {
-    // need to query
 
-    var domain = 'http://mightynest.getsum.net/proxy/';
+    var domain = 'http://mightynest.com/';
+
+    // first
     $http.get(domain + 'affiliate/info/' + $routeParams.schoolId + '/json')
       .success(function (response) {
         console.log('we are fine with', response);
 
-        //'sites/mightynest.com/files/json/schools/17/14/171446001802.txt'
+        // second
         $http.get(domain + response.json_file)
           .success(function (response) {
             console.log('We are even better with', response);
