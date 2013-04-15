@@ -2,7 +2,9 @@
 
 /* App Module */
 angular.module('mightynestApp', [])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
+
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
 
     /* Routes */
     $routeProvider

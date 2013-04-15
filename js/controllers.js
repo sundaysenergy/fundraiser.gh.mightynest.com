@@ -17,8 +17,8 @@ angular.module('mightynestApp')
   .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams) {
     // need to query
 
-    $http.get('http://mightynest.com/affiliate/info/' + $routeParams.schoolId + '/json')
+    $http.get('http://mightynest.getsum.net/proxy/affiliate/info/' + $routeParams.schoolId + '/json')
       .success(function (response) {
-        console.log('we are fine with', JSON.stringify(response));
+        console.log('we are fine with', response);
       })
   });
