@@ -27,6 +27,18 @@ angular.module('mightynestApp')
         $http.get(domain + response.json_file)
           .success(function (response) {
             console.log('We are even better with', response);
+
+            // @XXX very nasty code
+            window.z7x3p3;
+            var s = document.createElement('script');
+            s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+            s.onload = s.onreadystatechange = function() {
+            var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+            };
+            var scr = document.getElementsByTagName('script')[0],
+              par = scr.parentNode;
+            par.insertBefore(s, scr);
+
           });
       });
   });
