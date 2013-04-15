@@ -3,6 +3,13 @@
 /* Controllers */
 angular.module('mightynestApp')
 
+  // http://mightynest.com/affiliate/info/:schoolId/json
+  // http://mightynest.com/affiliate/stats/11174/json
+  // school_id = 20
+  // affiliate_id = 23
+
+  // 42 http://mightynest.com/mightynest/user/json
+
   .controller('RedirectToIndexCtrl', function ($location) {
     $location.url('/index.html');
   })
