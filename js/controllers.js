@@ -11,10 +11,14 @@ angular.module('mightynestApp')
   // 42 http://mightynest.com/mightynest/user/json
 
   .controller('RedirectToIndexCtrl', function () {
+    window.hash = '';
     window.location = '/index.html';
   })
 
-  .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams) {
+  .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams, $q) {
+
+    $scope.schoolId = $routeParams.schoolId;
+    $scope.userId = null;
 
     // prepare response to be passed to Wufoo
     var mapResponseToWufoo = function (properties) {
@@ -24,7 +28,6 @@ angular.module('mightynestApp')
           //  MS school_id  = Field20
           'Field20': 'school_id',
           //  MS Affiliate ID  = Field23
-          'Field23': 'school_affiliate2_uid',
           // MS self-signup = 'more info',
           //'Field24': '',
           //mail_address  = Field25
@@ -57,24 +60,45 @@ angular.module('mightynestApp')
           // Lead Medium  = Field38
           //'Field38': 'self-signup'
         },
+        prepopulated = {
+          'Field23': $scope.schoolId,
+          'Field42': $scope.userId
+        },
         result = [];
+
       angular.forEach(mapping, function (item, index) {
-        if (!properties[item]) return;
+        //if (!properties[item]) return;
         result.push(index + '=' + encodeURI(properties[item]));
       });
+
+      angular.forEach(prepopulated, function (item, index) {
+        //if (!properties[item]) return;
+        result.push(index + '=' + item);
+      });
+
       return result.join('&')
     };
 
     var domain = 'http://mightynest.com/';
 
     // first
-    $http.get(domain + 'affiliate/info/' + $routeParams.schoolId + '/json')
+    $http.get(domain + 'affiliate/info/' + $scope.schoolId + '/json')
       .success(function (response) {
 
-        // second
-        $http.get(domain + response.json_file)
-          .success(function (response) {
+        $q.all([
+            $http.get(domain + response.json_file),
+            $http.get(domain + 'mightynest/user/json')
+          ])
+          .then(function (response) {
+            var jsonFile = response.shift().data;
+            var user = response.shift().data;
+
+            console.log(user);
+            // get user id
+            $scope.userId = user.uid;
+
             // @XXX now it works but still crappy
+            // fire up Wufoo form
             window.p7x0r9;
             var s = document.createElement('script'),
               options = {
@@ -84,7 +108,7 @@ angular.module('mightynestApp')
                 height: '400',
                 async: true,
                 header: 'hide',
-                defaultValues: mapResponseToWufoo(response)
+                defaultValues: mapResponseToWufoo(jsonFile)
               };
             s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
             s.onload = s.onreadystatechange = function () {
