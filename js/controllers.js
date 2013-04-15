@@ -3,11 +3,6 @@
 /* Controllers */
 angular.module('mightynestApp')
 
-  // http://mightynest.com/affiliate/info/:schoolId/json
-  // http://mightynest.com/affiliate/stats/11174/json
-  // school_id = 20
-  // affiliate_id = 23
-
   // 42 http://mightynest.com/mightynest/user/json
 
   .controller('RedirectToIndexCtrl', function () {
@@ -62,7 +57,8 @@ angular.module('mightynestApp')
         },
         prepopulated = {
           'Field23': $scope.schoolId,
-          'Field42': $scope.userId
+          'Field42': $scope.userName,
+          'Field48': $scope.userId
         },
         result = [];
 
@@ -96,6 +92,7 @@ angular.module('mightynestApp')
             console.log(user);
             // get user id
             $scope.userId = user.uid;
+            $scope.userName = user.name;
 
             // @XXX now it works but still crappy
             // fire up Wufoo form
