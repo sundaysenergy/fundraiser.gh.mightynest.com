@@ -10,7 +10,7 @@ angular.module('mightynestApp')
     window.location = '/fundraiser/index.html';
   })
 
-  .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams, $q) {
+  .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams) {
 
     $scope.schoolId = $routeParams.schoolId;
     $scope.userId = null;
@@ -56,49 +56,46 @@ angular.module('mightynestApp')
     var domain = 'http://mightynest.com/';
 
     // first
-    $http.get(domain + 'affiliate/info/' + $scope.schoolId + '/json/FULL_LOAD')
+    $http
+      .get(domain + 'affiliate/info/' + $scope.schoolId + '/json/FULL_LOAD')
       .success(function (response) {
         $scope.schoolUrl = response.url;
-        $q.all([
-            $http.get(domain + response.json_file),
-            $http.get(domain + 'mightynest/user/json')
-          ])
-          .then(function (response) {
-            var jsonFile = response.shift().data;
-            var user = response.shift().data;
 
-            console.log(user);
-            // get user id
-            $scope.userId = user.uid;
-            $scope.userName = user.name;
+        var jsonFile = response.data;
+        var user = response.request_user;
 
-            // @XXX now it works but still crappy
-            // fire up Wufoo form
-            window.p7x0r9;
-            var s = document.createElement('script'),
-              options = {
-                userName: 'mightynest',
-                formHash: 'p7x0r9',
-                autoResize: true,
-                height: '400',
-                async: true,
-                header: 'hide',
-                defaultValues: mapResponseToWufoo(jsonFile)
-              };
-            s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
-            s.onload = s.onreadystatechange = function () {
-              var rs = this.readyState;
-              if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-              try {
-                window.p7x0r9 = new WufooForm();
-                window.p7x0r9.initialize(options);
-                window.p7x0r9.display();
-              } catch (e) {
-                console.error(e);
-              }
-            };
-            var scr = document.getElementsByTagName('script')[0], par = scr.parentNode;
-            par.insertBefore(s, scr);
-          });
+        // get user id
+        $scope.userId = user.uid;
+        $scope.userName = user.name;
+
+        // @XXX now it works but still crappy
+        // fire up Wufoo form
+        window.p7x0r9;
+        var s = document.createElement('script'),
+          options = {
+            userName: 'mightynest',
+            formHash: 'p7x0r9',
+            autoResize: true,
+            height: '400',
+            async: true,
+            header: 'hide',
+            defaultValues: mapResponseToWufoo(jsonFile)
+          };
+
+        s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
+        s.onload = s.onreadystatechange = function () {
+          var rs = this.readyState;
+          if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+          try {
+            window.p7x0r9 = new WufooForm();
+            window.p7x0r9.initialize(options);
+            window.p7x0r9.display();
+          } catch (e) {
+            console.error(e);
+          }
+        };
+        var scr = document.getElementsByTagName('script')[0], par = scr.parentNode;
+        par.insertBefore(s, scr);
+
       });
   });
