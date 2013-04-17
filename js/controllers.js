@@ -41,12 +41,12 @@ angular.module('mightynestApp')
         result = [];
 
       angular.forEach(mapping, function (item, index) {
-        //if (!properties[item]) return;
+        if (!properties[item]) return;
         result.push(index + '=' + encodeURI(properties[item]));
       });
 
       angular.forEach(prepopulated, function (item, index) {
-        //if (!properties[item]) return;
+        if (!item) return;
         result.push(index + '=' + item);
       });
 
@@ -66,7 +66,7 @@ angular.module('mightynestApp')
 
         // get user id
         $scope.userId = user.uid;
-        $scope.userName = user.name;
+        $scope.userName = user.name || '';
 
         // @XXX now it works but still crappy
         // fire up Wufoo form
