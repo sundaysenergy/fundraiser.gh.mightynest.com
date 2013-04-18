@@ -2,13 +2,13 @@
 
 /* Controllers */
 angular.module('mightynestApp')
-  .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams) {
+  .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams, config) {
 
     $scope.schoolId = $routeParams.schoolId;
     $scope.userId = null;
 
     // prepare response to be passed to Wufoo
-    var mapResponseToWufoo = function (properties) {
+    $scope.mapResponseToWufoo = function (properties) {
       var mapping = {
           //wufooFiedId : jsonFileFieldId
           'Field12': 'school_name',
@@ -28,7 +28,7 @@ angular.module('mightynestApp')
           'Field23': $scope.schoolId,
           'Field42': $scope.userName,
           'Field48': $scope.userId,
-          'Field21': $scope.schoolUrl,
+          'Field21': $scope.schoolUrl
         },
         result = [];
 
@@ -45,7 +45,7 @@ angular.module('mightynestApp')
       return result.join('&')
     };
 
-    var domain = 'http://mightynest.com/';
+    var domain = config.JSON_API_DOMAIN;
 
     // first
     $http
@@ -71,7 +71,7 @@ angular.module('mightynestApp')
             height: '400',
             async: true,
             header: 'hide',
-            defaultValues: mapResponseToWufoo(jsonFile)
+            defaultValues: $scope.mapResponseToWufoo(jsonFile)
           };
 
         s.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.wufoo.com/scripts/embed/form.js';
