@@ -29,7 +29,6 @@ angular.module('mightynestApp')
       .success(function (response) {
         $scope.faqItems = $scope.parseFaqItems(response);
         $scope.showItem(0);
-        console.log($scope.faqItems[0]);
       });
 
     var parser = jsyaml;
