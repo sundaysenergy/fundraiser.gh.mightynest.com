@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-angular.module('mightynestApp')
+mightynestApp
   .controller('SchoolInfoCtrl', function ($scope, $http, $routeParams, config) {
 
     $scope.schoolId = $routeParams.schoolId;

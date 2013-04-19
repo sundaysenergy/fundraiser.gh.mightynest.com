@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-angular.module('mightynestApp', [])
+var mightynestApp = angular.module('mightynestApp', ['ngSanitize'])
   .config(function ($routeProvider, $httpProvider) {
 
     delete $httpProvider.defaults.headers.common["X-Requested-With"];

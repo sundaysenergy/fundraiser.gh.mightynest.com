@@ -1,11 +1,10 @@
 'use strict';
 
 /* Controllers */
-angular.module('mightynestApp')
 
   // 42 http://mightynest.com/mightynest/user/json
-
-  .controller('FaqCtrl', function ($scope, $http, config) {
+mightynestApp
+  .controller('FaqCtrl', function ($scope, $http, $filter, config) {
 
     $scope.activeItem = null;
 
@@ -14,7 +13,7 @@ angular.module('mightynestApp')
       angular.forEach(rawItems, function (rawItem) {
         var item = yaml_front(rawItem.content);
         var mdConverter = new Showdown.converter();
-        item.html = mdConverter.makeHtml(item.text);
+        item.html = mdConverter.makeHtml($filter('linky')(item.text));
         items.push(item);
       });
       return items;
