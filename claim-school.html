@@ -60,7 +60,7 @@
           <h3>FAQ's</h3>
 
           <ul>
-            <li data-ng-repeat="faqItem in faqItems">
+            <li data-ng-repeat="faqItem in faqItems | orderBy: order ">
               <a href="#" data-ng-click="showItem($index, $event)"
                   data-ng-bind-html-unsafe="faqItem.attributes.title"
                   data-ng-class="{selected: faqItem.attributes.title == faqItems[activeItem].attributes.title}"></a>

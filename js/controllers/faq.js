@@ -56,4 +56,8 @@ mightynestApp
 
       if (match && match.length > 0) return match
     }
+
+    $scope.order = function (item) {
+      return item.attributes.order;
+    };
   });
