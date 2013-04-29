@@ -30,6 +30,7 @@
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
     <script src="js/controllers/faq.js"></script>
+    <script src="js/controllers/headerContent.js"></script>
 
     <script type="text/javascript">
       <!--//--><![CDATA[//><!--
@@ -39,18 +40,25 @@
   </head>
   <body>
     <div class="container">
-      <div id="header">
-        <a href="/" title="mightynest" class="logo"><img src="images/logo.jpg" alt="logo" /></a>
-        <h1>Make your School Mightier:</h1>
+
+      <div data-ng-controller="HeaderContentCtrl">
+        <div id="header">
+          <a href="/" title="mightynest" class="logo"><img src="images/logo.jpg" alt="logo"></a>
+          <h1 data-ng-bind="content.block_text"></h1>
+        </div>
+        <nav>
+          <ol>
+            <li data-ng-repeat="item in content.img_txt | orderBy:'order'">
+              <img data-ng-src="{{ item.image }}">
+
+              <p data-ng-bind-html-unsafe="item.text"></p>
+            </li>
+          </ol>
+        </nav>
       </div>
-      <nav>
-        <ol>
-          <li><img src="images/intro_01.jpg" alt="intro 01" /><p>Raise money for<br> important programs</p></li>
-          <li><img src="images/intro_02.jpg" alt="intro 02" /><p>Build an engaged community<br> around healthy living</p></li>
-          <li><img src="images/intro_03.jpg" alt="intro 03" /><p>Raise healthy, active<br> and mindful kids</p></li>
-        </ol>
-      </nav>
+
       <div class="clearfix"></div>
+
       <div id="content">
         <h2>Let us show you an example fundraiser created for your school.</h2>
         <form id="find-your-school" class="form-inline">
