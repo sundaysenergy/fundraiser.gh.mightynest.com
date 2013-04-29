@@ -4,21 +4,19 @@
 
 // 42 http://mightynest.com/mightynest/user/json
 mightynestApp
-  .controller('HeaderContentCtrl', function ($scope, $http, config) {
+  .controller('HeaderContentCtrl', function ($scope, $http, config, jsyamlHelper) {
 
     $http.get(config.URLS.HEADER_CONTENT, config.GITHUB_HEADERS)
       .success(function (response) {
         $scope.content = yaml_front(response);
       });
 
-    var parser = jsyaml;
-
     function yaml_front (string) {
       var attributes = {}
         , match = matcher(string, '---');
 
       if (match) {
-        attributes = parser.load(match[2].replace(/^\s+|\s+$/g, '')) || {};
+        attributes = jsyamlHelper.parse(match[2]);
       }
 
       return attributes;
