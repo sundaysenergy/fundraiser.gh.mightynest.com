@@ -24,7 +24,7 @@ mightynestApp
       $scope.activeItem = index;
     };
 
-    $http.get(config.FAQ_URL)
+    $http.get(config.URLS.FAQ)
       .success(function (response) {
         $scope.faqItems = $scope.parseFaqItems(response);
         $scope.showItem(0);

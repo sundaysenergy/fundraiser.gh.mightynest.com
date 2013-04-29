@@ -32,7 +32,7 @@ describe('Controller: FaqCtrl', function () {
   }));
 
   beforeEach(function () {
-    console.log(_config.FAQ_URL);
+    console.log(_config.URLS.FAQ);
   });
 
   describe('parseFaqItems', function () {

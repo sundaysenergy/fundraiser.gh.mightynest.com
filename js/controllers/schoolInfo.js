@@ -45,7 +45,7 @@ mightynestApp
       return result.join('&')
     };
 
-    var domain = config.JSON_API_DOMAIN;
+    var domain = config.URLS.JSON_API_ROOT;
 
     // first
     $http
