@@ -1,0 +1,18 @@
+<div data-ng-controller="HeaderContentCtrl">
+  <div id="header">
+    <a href="/" title="mightynest" class="logo"><img src="images/logo.jpg" alt="logo"></a>
+
+    <h1 data-ng-bind="content.block_text"></h1>
+  </div>
+  <nav>
+    <ol>
+      <li data-ng-repeat="item in content.img_txt | orderBy:'order'">
+        <img data-ng-src="{{ item.image }}">
+
+        <p data-ng-bind-html-unsafe="item.text"></p>
+      </li>
+    </ol>
+  </nav>
+</div>
+
+<div class="clearfix"></div>

@@ -41,23 +41,7 @@
   <body>
     <div class="container">
 
-      <div data-ng-controller="HeaderContentCtrl">
-        <div id="header">
-          <a href="/" title="mightynest" class="logo"><img src="images/logo.jpg" alt="logo"></a>
-          <h1 data-ng-bind="content.block_text"></h1>
-        </div>
-        <nav>
-          <ol>
-            <li data-ng-repeat="item in content.img_txt | orderBy:'order'">
-              <img data-ng-src="{{ item.image }}">
-
-              <p data-ng-bind-html-unsafe="item.text"></p>
-            </li>
-          </ol>
-        </nav>
-      </div>
-
-      <div class="clearfix"></div>
+      <div data-ng-include="'/views/header-content.html'"></div>
 
       <div id="content">
         <h2>Let us show you an example fundraiser created for your school.</h2>
@@ -72,24 +56,7 @@
         <p class="add-school" style="display:none;"><a href="add-school.html">School not in the list?</a></p>
       </div>
 
-      <div id="faq" data-ng-controller="FaqCtrl">
-        <h3>FAQ's</h3>
-
-        <ul>
-          <li data-ng-repeat="faqItem in faqItems | orderBy: order ">
-            <a href="#" data-ng-click="showItem($index, $event)"
-                data-ng-bind-html-unsafe="faqItem.attributes.title"
-                data-ng-class="{selected: faqItem.attributes.title == faqItems[activeItem].attributes.title}"></a>
-          </li>
-        </ul>
-
-        <div class="popover right">
-          <div class="arrow" style="margin-top:{{activeItem * 35 - 145}}px"></div>
-          <div class="popover-content" data-ng-bind-html-unsafe="faqItems[activeItem].html">
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
+      <div data-ng-include="'/views/faq.html'"></div>
 
       <div id="footer">
         <div class="contact">
