@@ -4,7 +4,7 @@
 
     <h1 data-ng-bind="content.block_text"></h1>
   </div>
-  <nav>
+  <nav class="clearfix">
     <ol>
       <li data-ng-repeat="item in content.img_txt | orderBy:'order'">
         <img data-ng-src="{{ item.image }}">
@@ -13,6 +13,7 @@
       </li>
     </ol>
   </nav>
+  <p class="header-block-text">{{content.block_text}}</p>
 </div>
 
 <div class="clearfix"></div>
