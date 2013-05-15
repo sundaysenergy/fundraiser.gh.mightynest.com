@@ -1,0 +1,21 @@
+<div id="content" data-ng-controller="SearchSchoolCtrl">
+  <h2>Let us show you an example fundraiser created for your school.</h2>
+
+  <form id="find-your-school" class="form-inline">
+    <fieldset>
+      <input type="text" id="target" placeholder="Your zip code" class="span3" data-ng-model="zipcode">
+      <input type="text" id="school" placeholder="Your school" class="span7" data-ng-model="school">
+      <img title="remove school selection"
+          src="/sites/all/modules/mightynest_custom/modules/uc_affiliate2_create/client-side/images/remove_school.gif"
+          id="remove_select_school" style="display:none">
+      <button type="submit" class="btn btn-danger"
+          id="school-submit-2"
+          data-ng-click="searchSchool()"
+          disabled="disabled">Discover how</button>
+    </fieldset>
+  </form>
+
+  <p class="add-school" data-ng-show="showAddSchool">
+    <a href="add-school.html">School not in the list?</a>
+  </p>
+</div>

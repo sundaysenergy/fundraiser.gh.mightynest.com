@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" />
     <link href="css/school-list.css" media="all" rel="stylesheet" type="text/css" />
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js"></script>
-    <script src="/sites/all/modules/mightynest_custom/modules/uc_affiliate2_create/client-side/jquery.search.js"></script>
     <script src="components/bootstrap/js/bootstrap-tooltip.js"></script>
     <script src="components/bootstrap/js/bootstrap-popover.js"></script>
     <script src="components/bootstrap/js/bootstrap-modal.js"></script>
@@ -30,8 +29,10 @@
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
     <script src="js/services/jsyml-helper-service.js"></script>
+    <script src="js/services/school-search-service.js"></script>
     <script src="js/controllers/faq.js"></script>
     <script src="js/controllers/headerContent.js"></script>
+    <script src="js/controllers/searchSchool.js"></script>
 
     <script type="text/javascript">
       <!--//--><![CDATA[//><!--
@@ -44,18 +45,7 @@
 
       <div data-ng-include="'/views/header-content.html'"></div>
 
-      <div id="content">
-        <h2>Let us show you an example fundraiser created for your school.</h2>
-        <form id="find-your-school" class="form-inline">
-          <fieldset>
-            <input id="target" type="text" placeholder="your zip code" class="span3" />
-            <input id="school" type="text" placeholder="your school" class="span7" />
-            <img title="remove school selection" src="/sites/all/modules/mightynest_custom/modules/uc_affiliate2_create/client-side/images/remove_school.gif" id="remove_select_school" style="display:nonel" />
-            <button type="submit" id="school-submit-2" class="btn btn-danger" disabled="disabled">discover how</button>
-          </fieldset>
-        </form>
-        <p class="add-school" style="display:none;"><a href="add-school.html">School not in the list?</a></p>
-      </div>
+      <div data-ng-include="'/views/search-school.html'"></div>
 
       <div data-ng-include="'/views/faq.html'"></div>
 
@@ -69,11 +59,13 @@
           </p>
           <p class="copy">&copy;2013 MightyNest. All rights reversed.</p>
         </div>
+
         <div class="connect">
           <h3>Connect With Us:</h3>
           <a href="http://facebook.com/mightynest" class="fb"><img src="images/fb.jpg" alt="fb"/></a>
           <a href="http://twitter.com/mightynest" class="tw"><img src="images/twitter.jpg" alt="twitter"/></a>
         </div>
+
         <div class="share">
           <p>
             <a href="http://mightynest.com">Shop MightyNest.com</a>
@@ -85,6 +77,7 @@
           <!-- AddThis Button END -->
         </div>
       </div>
+
       <!-- Modal -->
       <div id="wufoo-Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
@@ -98,6 +91,7 @@
           <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         </div>
       </div>
+
       <script type="text/javascript">
       var z7x3p3;(function(d, t) {
         var s = d.createElement(t);
@@ -108,19 +102,11 @@
         var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
       })(document, 'script');
       </script>
+
     </div>
+
     <script>
       $(function() {
-        // Open on button click
-        $('#school-submit-2').bind('click', function (e) {
-          e.preventDefault();
-          // Trigger submit
-          $('#find-your-school').submit();
-          $('#school-submit-2').attr('disabled', 'disabled');
-          $('#wufoo-Modal').modal();
-          // Add Google Event
-          _gaq.push(['_trackEvent', 'MS_learn_more', 'form submit', 'discover how']);
-        });
         $('#wufoo-Modal').on('show', function() {
           // Init form
           z7x3p3 = new WufooForm();
@@ -174,9 +160,11 @@
             // Lead Medium  = Field38
             //'Field38': 'self-signup'
           };
+
           $.each(mapping, function (index, item) {
             default_value.push(index + '=' + encodeURI(school_info[item]));
           });
+
           // Some fixed field
           default_value.push('Field24=' + encodeURI('more info'));
           var d = new Date();
@@ -187,6 +175,7 @@
           default_value.push('Field36=' + encodeURI(curr_year));
           default_value.push('Field37=' + encodeURI('mightynest.com'));
           default_value.push('Field38=' + encodeURI('self-signup'));
+
           // Call to json server and get more info: aid + url
           $.ajax({
             async: false,
@@ -196,6 +185,7 @@
               default_value.push('Field21=' + encodeURI(data.url));
             }
           });
+
           // Call to get username
           $.ajax({
             async: false,
@@ -206,61 +196,13 @@
             }
           });
           options.defaultValues = default_value.join('&');
+
           // Missing MS URL + MS Affiliate ID
           z7x3p3.initialize(options);
           z7x3p3.display();
           $('#wufoo-z7x3p3').trigger('resize');
         });
       });
-      $('#target').school_complete({
-        json_file: Drupal.settings.affiliate_create_json_file_path,
-        update_element: 'school-id',
-        affiliate_element: 'school-affiliate2-uid',
-        input_element: 'school',
-        submit_element: 'school-submit',
-        select_element: 'school-select',
-        affiliate_uid_element: 'school-affiliate2-uid',
-        form_id: 'find-your-school',
-        json_suffix: '.txt',
-        has_affiliate: Drupal.settings.affiliate
-      });
-      // #42823885
-      $('#school').on('autocompleteselect', function (event, ui) {
-        // Check valid school
-        if (typeof ui.item.value != 'undefined') {
-          $('#school-submit-2').removeAttr('disabled');
-          $('p.add-school').show();
-          // Get zipcode entered
-          var zipcode_entered = $('#target').val();
-          _gaq.push(['_trackEvent', 'MS_cart_selector', 'form entry', zipcode_entered]);
-          _gaq.push(['_trackEvent', 'MS_learn_more', 'form entry', zipcode_entered]);
-        }
-      });
-
-        /* doLinks script */
-        function linkify(inputText, options) {
-          this.options = {linkClass: 'url', targetBlank: true};
-          this.options = $.extend(this.options, options);
-          inputText = inputText.replace(/\u200B/g, "");
-
-          //URLs starting with http://, https://, or ftp://
-          var replacePattern1 = /(src="|href="|">|\s>)?(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;ï]*[-A-Z0-9+&@#\/%=~_|ï]/gim;
-          var replacedText = inputText.replace(replacePattern1, function($0,$1){ return $1?$0:'<a class="'+ this.options.linkClass + '" href="' + $0 + '"' + (this.options.targetBlank?'target="_blank"':'') + '>'+ $0+ '</a>';});
-
-          //URLS starting with www and not the above
-          var replacePattern2 = /(src="|href="|">|\s>|https?:\/\/|ftp:\/\/)?www\.[-A-Z0-9+&@#\/%?=~_|!:,.;ï]*[-A-Z0-9+&@#\/%=~_|ï]/gim;
-          var replacedText = replacedText.replace(replacePattern2, function($0,$1){ return $1?$0:'<a class="'+ this.options.linkClass + '" href="http://' + $0 + '"' + (this.options.targetBlank?'target="_blank"':'') + '>'+ $0+ '</a>';});
-
-          //Change email addresses to mailto:: links
-          var replacePattern3 = /([\.\w]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
-          var replacedText = replacedText.replace(replacePattern3, '<a class="' + this.options.linkClass + '" href="mailto:$1">$1</a>');
-
-          //Change "add your school here" to a link
-          var replacePattern4 = /(add your school here)/gim;
-          var replacedText = replacedText.replace(replacePattern4, '<a class="' + this.options.linkClass + '" href="add-school.html">$1</a>');
-
-          return replacedText;
-        }
     </script>
   </body>
 </html>
