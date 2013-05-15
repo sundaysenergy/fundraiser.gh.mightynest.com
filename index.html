@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="mightynestApp">
   <head>
     <script src="//cdn.optimizely.com/js/81842342.js"></script>
     <title>Mighty Schools Fundraising Program: Fund Your Mighty School</title>
@@ -9,7 +9,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script>
       var Drupal = {
-        settings : {},
+        settings : {}
       };
       Drupal.settings.affiliate_create_module_path = '../';
       Drupal.settings.affiliate_create_json_file_path = 'sites/schools.mightynest.com/files/json';
@@ -21,6 +21,18 @@
     <script src="components/bootstrap/js/bootstrap-tooltip.js"></script>
     <script src="components/bootstrap/js/bootstrap-popover.js"></script>
     <script src="components/bootstrap/js/bootstrap-modal.js"></script>
+
+    <script src="components/js-yaml/js-yaml.min.js"></script>
+    <script src="components/showdown/showdown.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-sanitize.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/services/jsyml-helper-service.js"></script>
+    <script src="js/controllers/faq.js"></script>
+    <script src="js/controllers/headerContent.js"></script>
+
     <script type="text/javascript">
       <!--//--><![CDATA[//><!--
       var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-7833382-2"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
@@ -29,18 +41,9 @@
   </head>
   <body>
     <div class="container">
-      <div id="header">
-        <a href="/" title="mightynest" class="logo"><img src="images/logo.jpg" alt="logo" /></a>
-        <h1>Make your School Mightier:</h1>
-      </div>
-      <nav>
-        <ol>
-          <li><img src="images/intro_01.jpg" alt="intro 01" /><p>Raise money for<br> important programs</p></li>
-          <li><img src="images/intro_02.jpg" alt="intro 02" /><p>Build an engaged community<br> around healthy living</p></li>
-          <li><img src="images/intro_03.jpg" alt="intro 03" /><p>Raise healthy, active<br> and mindful kids</p></li>
-        </ol>
-      </nav>
-      <div class="clearfix"></div>
+
+      <div data-ng-include="'/views/header-content.html'"></div>
+
       <div id="content">
         <h2>Let us show you an example fundraiser created for your school.</h2>
         <form id="find-your-school" class="form-inline">
@@ -53,47 +56,9 @@
         </form>
         <p class="add-school" style="display:none;"><a href="add-school.html">School not in the list?</a></p>
       </div>
-      <div id="faq">
-        <h3>FAQ's</h3>
-        <ul>
-          <li>
-            <a href="#" rel="popover" data-content="MightyNest.com makes it easy to research and buy a wide selection of natural, organic and non-toxic products all in one place. All of the products we sell are free from known toxic ingredients such as: BPA, PVC, Phthalates, Lead, Melamine, Formaldehyde, Flame retardants, Parabens and more. And we test products with our own families to make sure they are durable and well-designed. Our mission is to help families live a Mighty Life: a healthy, active and mindful life." class="selected">Who is MightyNest?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="MightyNest gives families the opportunity to donate 15% of their purchases to their schools. The school does not need to worry about carrying product or filling orders--MightyNest will take care of everything. The school simply promotes the program to the school community (via email, post information to the school web site, or sending home a flyer or catalog). The program is headache-free for the school. It is popular with parents as well because the kids will not asked to be salespeople and only high-quality products are sold.">How does the Mighty Schools program work?</a></li>
-          <li>
-            <a href="#" rel="popover" data-content="We mean healthy, active, and mindful. It's about a certain attitude towards life. Empowered and engaged, positive and alive. Not taking things for granted. Seeking information and making decisions that are positive for self, family, community and planet.">What do you mean by &quot;mighty&quot;?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="It allows you to raise funds that can be used to support healthy, active and mindful programs and provide information that helps parents and schools live healthy, active and mindful lives. Our goal is to engage the school community, making it easier for the school, PTA or green committee to achieve their program goals--not just fundraising goals.">How does this program make my school &quot;mighty&quot;?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="We are currently enrolling pre/K through elementary schools in the United States. Use the form above to find and select your school. Email us at schools@mightynest.com if your school does not appear on the list. ">What kinds of schools can participate? </a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="To find your school, enter the school's zip code and begin typing the first few letters of the school name in the school field. The list currently includes public and private elementary schools in the US. If your school does not appear in the list, please add your school here. We'll review and let you know when your school is set up.">Why isn't my school in the list?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="MightyNest creates custom marketing materials for your school. Most of these materials are electronic, and can be sent to parents over email. We will send your school the exact email message, so all you have to do is hit &quot;send.&quot; We create an individual fundraising web page for your school and also communicate with parents through an opt-in newsletter containing helpful articles and tips for healthy livingt. ">How does the program get marketed to my school?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="There is nothing required to create an account and start accruing a donation balance. Sign-up your school above to get started. To achieve meaningful fundraising results will require some word of mouth and school or PTA involvement. Get the ball rolling by sharing your school's fundraising page with other school families. ">Is anything required of my school to participate?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="We pay schools twice a year for donations raised through Mighty Schools, in January and June. In order to be paid, schools must have over $50 in their fundraising account. We also need a PTA contact to arrange payment details. Contact us at schools@mightynest.com for additional details.">How does my school / PTA get paid?</a>
-          </li>
-          <li>
-            <a href="#" rel="popover" data-content="We'd be happy to answer them. Contact us at schools@mightynest.com.">I still have questions.</a>
-          </li>
-        </ul>
-        <div class="popover right">
-          <div class="arrow"></div>
-          <div class="popover-content">
-            <p>MightyNest is a web business devoted to helping you create healthier schools for your kids while raising money for meaningful school projects. We offer a unique selection of natural, organic and non-toxic products.</p>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
+
+      <div data-ng-include="'/views/faq.html'"></div>
+
       <div id="footer">
         <div class="contact">
           <h3>Contact Us</h3>
@@ -271,27 +236,8 @@
           _gaq.push(['_trackEvent', 'MS_learn_more', 'form entry', zipcode_entered]);
         }
       });
-      // popover
-      var $popover = $('#faq .popover');
-      $("#faq a[rel=popover]")
-        .click(function(e) {
-          // Only one popover at a time
-          // Delete all select;
-          $('#faq .selected').removeClass('selected');
-          // Assign this content to popover
-          var $a = $(this);
-          $a.addClass('selected');
-          $popover.find('.popover-content').html(linkify($a.data('content')));
-          // asign arow correct position, each line have height + padding + boder = 35, top position = -55
-          var index = $("#faq a[rel=popover]").index($a);
-          $popover.find('.arrow').css('margin-top', index*35 - 145 + 'px');
-          // Google analytics trackevent
-          _gaq.push(['_trackEvent', 'MS_learn_more', 'FAQ click', $a.html()]);
-          e.preventDefault();
-        });
 
         /* doLinks script */
-
         function linkify(inputText, options) {
           this.options = {linkClass: 'url', targetBlank: true};
           this.options = $.extend(this.options, options);

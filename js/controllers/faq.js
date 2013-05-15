@@ -4,7 +4,7 @@
 
   // 42 http://mightynest.com/mightynest/user/json
 mightynestApp
-  .controller('FaqCtrl', function ($scope, $http, $filter, config) {
+  .controller('FaqCtrl', function ($scope, $http, $filter, config, jsyamlHelper) {
 
     $scope.activeItem = null;
 
@@ -24,21 +24,19 @@ mightynestApp
       $scope.activeItem = index;
     };
 
-    $http.get(config.FAQ_URL)
+    $http.get(config.URLS.FAQ)
       .success(function (response) {
         $scope.faqItems = $scope.parseFaqItems(response);
         $scope.showItem(0);
       });
 
-    var parser = jsyaml;
-
     function yaml_front (string) {
       var text = string
         , attributes = {}
-        , match = matcher(string, '---')
+        , match = matcher(string, '---');
 
       if (match) {
-        attributes = parser.load(match[2].replace(/^\s+|\s+$/g, '')) || {};
+        attributes = jsyamlHelper.parse(match[2]);
         text = string.replace(match[0], '');
       }
 

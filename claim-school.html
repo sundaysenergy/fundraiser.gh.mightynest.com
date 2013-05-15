@@ -23,8 +23,10 @@
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
     <script src="js/controllers/redirectToIndex.js"></script>
+    <script src="js/services/jsyml-helper-service.js"></script>
     <script src="js/controllers/schoolInfo.js"></script>
     <script src="js/controllers/faq.js"></script>
+    <script src="js/controllers/headerContent.js"></script>
 
     <script type="text/javascript">
       <!--//--><![CDATA[//><!--
@@ -35,18 +37,9 @@
   <body>
     <div class="hide" data-ng-view></div>
     <div class="container">
-      <div id="header">
-        <a href="/" title="mightynest" class="logo"><img src="images/logo.jpg" alt="logo" /></a>
-        <h1>Make your School Mightier:</h1>
-      </div>
-      <nav>
-        <ol>
-          <li><img src="images/intro_01.jpg" alt="intro 01" /><p>Raise money for<br> important programs</p></li>
-          <li><img src="images/intro_02.jpg" alt="intro 02" /><p>Build an engaged community<br> around healthy living</p></li>
-          <li><img src="images/intro_03.jpg" alt="intro 03" /><p>Raise healthy, active<br> and mindful kids</p></li>
-        </ol>
-      </nav>
-      <div class="clearfix"></div>
+
+      <div data-ng-include="'/views/header-content.html'"></div>
+
       <div id="claim-content">
         <h1>Claim Your Mighty School Page</h1>
         <p>
@@ -56,24 +49,7 @@
           Fill out my <a href="http://mightynest.wufoo.com/forms/p7x0r9&header=hide">online form</a>.
         </div>
 
-        <div id="faq" data-ng-controller="FaqCtrl">
-          <h3>FAQ's</h3>
-
-          <ul>
-            <li data-ng-repeat="faqItem in faqItems | orderBy: order ">
-              <a href="#" data-ng-click="showItem($index, $event)"
-                  data-ng-bind-html-unsafe="faqItem.attributes.title"
-                  data-ng-class="{selected: faqItem.attributes.title == faqItems[activeItem].attributes.title}"></a>
-            </li>
-          </ul>
-
-          <div class="popover right">
-            <div class="arrow" style="margin-top:{{activeItem * 35 - 145}}px"></div>
-            <div class="popover-content" data-ng-bind-html-unsafe="faqItems[activeItem].html">
-            </div>
-          </div>
-          <div class="clearfix"></div>
-        </div>
+        <div data-ng-include="'/views/faq.html'"></div>
 
       </div>
 
